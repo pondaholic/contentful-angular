@@ -2,11 +2,17 @@
   images works!
 </p>
 
+<ul class="u-listReset">
+  <li *ngFor="let image of images">
+    <img src="{{ images }}" />
+  </li>
+</ul>
+
 <div>
   <div class="alert alert-info" role="alert">
     <div class="d-flex flex-wrap flex-xl-nowrap flex-lg-nowrap flex-md-nowrap">
       <div class="p-2">
-        <img src="{{ images.fields.heroImage.fields.file.url }}" />
+        <!-- <div id="images" /> -->
         <!-- <img [src]="getImages" /> -->
       </div>
     </div>

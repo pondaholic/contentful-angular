@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 
 @Injectable()
 export class ContentfulService {
+  // private imageURL: string;
   private client = createClient({
     space: environment.contentful.spaceId,
     accessToken: environment.contentful.accessToken
@@ -12,22 +13,18 @@ export class ContentfulService {
 
   constructor() {}
 
-  getImages(query?: object): Promise<Entry<any>> {
-    return this.client
-      .getEntries(
-        Object.assign(
-          {
-            content_type: 'heroBannerImage'
-          },
-          query
-        )
-      )
-      .then(res => {
-        console.log(res.items[0]);
-        // console.log(res.items[0].fields.heroImage.fields.file.url);
-        return res.items[0];
-      });
+  getImages(query?: object): Promise<Entry<any>[]> {
+    return this.client.getAssets().then(assets => {
+      console.log(assets.items);
+      return assets.items;
+    });
   }
+
+  // getAssets(query?: object): Promise<Entry<any>[] {
+  // 	return client.getAssets().then(assets => {
+  // 		assets.items.map(asset => const imageURL = asset.fields.file.url)
+  // 	})
+  // }
 
   // getCourse(courseId): Promise<Entry<any>> {
   //   return this.client
